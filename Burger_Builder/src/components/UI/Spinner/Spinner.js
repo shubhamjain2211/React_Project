@@ -1,8 +1,10 @@
-import React from 'react';
-import classes from './Spinner.css'
+import React from 'react'
+import classes from './Spinner.module.css'
 
-const spinner= () => (
-    <div className={classes.ldsring}><div></div><div></div><div></div><div></div></div>
+
+const Spinner = (props) => (
+    <div className={classes["lds-ripple"]}
+     style = {{left :  props.left ,  top : props.top  }}><div></div><div></div></div>
 )
 
-export default spinner;
+export default Spinner

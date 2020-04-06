@@ -1,28 +1,48 @@
-import React from 'react';
-import classes from './Burger.css'
-import BurgerIngredient from './Burgeringredient/Burgeringredient';
+import React, { Component } from 'react'
+import Burgeringredient from './BurgerIngredients/burgeringredients'
+// import Aux from '../../hoc/Aux'
+import classes from './burger.module.css'
 
-const burger = (props) => {
-    let transformedIngredients = Object.keys(props.ingredients).map(igKey=> 
-        {return[...Array(props.ingredients[igKey])].map((_, i)=>{
-        return<BurgerIngredient key={igKey + i} type={igKey} />
+class Burger extends Component {
+
+  render() {
+    console.log(this.props)
+    const ingredients = this.props.ingredients;
+    console.log(this.props.ingredients)
+    let ingarray = Object.keys(ingredients).map((igkey) => {
+      return [...Array(this.props.ingredients[igkey])].map((_, i) => {
+        console.log(igkey);
+        return <Burgeringredient key={igkey + i} type={igkey} />
+      })
     });
-    })
-
-    .reduce((arr,el) => {
-        return arr.concat(el)
-    }, []);
-
-    if(transformedIngredients.length ===0 ){
-        transformedIngredients=<p>Please Start Adding Ingredients!</p>
+    let flag = true;
+    for (let i in ingarray) {
+      console.log("this is ingarray length ", ingarray[i].length)
+      if (ingarray[i].length !== 0) {
+        flag = false;
+        break;
+      }
     }
-    return ( 
-        <div className={classes.Burger}>
-            <BurgerIngredient type="bread-top"/>
-            {transformedIngredients}
-            <BurgerIngredient type="bread-bottom"/>
-        </div>
-    );
+    if (flag) {
+      ingarray = <p>please add ingredients</p>
+    }
+    return (
+      <div className={classes.burger}>
+
+
+        <Burgeringredient type="bread-top" />
+
+        {ingarray}
+
+
+        <Burgeringredient type="bread-bottom" />
+      </div>
+
+    )
+  }
+
+
 }
 
-export default burger;
+
+export default Burger

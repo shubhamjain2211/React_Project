@@ -1,0 +1,9 @@
+.burger {
+    width : 40%;
+    margin : 72px auto auto auto;
+    height : 300px;
+    overflow : auto;
+    text-align : center ;
+    font-weight : bold;
+    font-size : 1.2rem;
+}
